@@ -12,15 +12,18 @@ Bonus: Can you do this in one pass?
 
 
 def solution(list_of_numbers, k):
-    copy = list_of_numbers.copy()
-    list_of_numbers = np.expand_dims(np.array(list_of_numbers), axis=-1)
-    list_of_numbers = np.add(list_of_numbers.T, list_of_numbers) - k
-    list_of_numbers = np.logical_not(list_of_numbers.astype(np.bool))
+    array_of_numbers = np.expand_dims(np.array(list_of_numbers), axis=-1)
+    combination_array = np.add(array_of_numbers.T, array_of_numbers) - k
+    combination_array = np.logical_not(combination_array.astype(np.bool))
+    sum_exists = np.any(combination_array)
 
-    sum_exists = np.any(list_of_numbers)
     if sum_exists:
-        index = np.where(list_of_numbers)
-        print('{} and {} can be added to reach {}.'.format(copy[index[0][0]], copy[index[0][1]], k))
+        index = np.where(combination_array)
+        print('{} and {} can be added to reach {}.'.format(
+            list_of_numbers[index[0][0]],
+            list_of_numbers[index[0][1]],
+            k)
+        )
     else:
         print('No sum exists.')
 
