@@ -28,4 +28,5 @@ def solution(list_of_numbers, k):
         print('No sum exists.')
 
 
-solution(list_of_numbers=[10, 4, 354, 723, 12, 11], k=23)
+if __name__ == '__main__':
+    solution(list_of_numbers=[10, 4, 354, 723, 12, 11], k=23)
